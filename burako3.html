@@ -54,6 +54,26 @@
       </style>
 </head>
 <body>
+    <!-- Modal de Festejo -->
+<div id="victoryModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">¡Felicidades!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="winnerMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="startNewGame()">Nuevo Juego</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <div class="container text-center mt-5">
         <h1 class="text-danger">Burako TRES</h1>
         <button id="new-game-btn" class="btn btn-success">Nuevo Juego</button>
@@ -83,6 +103,8 @@
             </ul>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
         //const bootstrapLink = document.createElement('link');
         //bootstrapLink.rel = 'stylesheet';
@@ -98,6 +120,24 @@
             lowTiles: 40,
             highTiles: 48
         };
+
+
+        //Animaciones del final del juego
+let confettiInterval;
+
+function startConfetti() {
+  confettiInterval = setInterval(() => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { x: Math.random(), y: Math.random() - 0.2 }, // Posición aleatoria
+    });
+  }, 500); // Cada 500ms
+}
+
+function stopConfetti() {
+  clearInterval(confettiInterval); // Detener el bucle
+}
 
         document.getElementById('new-game-btn').addEventListener('click', () => {
             const gameType = prompt("Elige el tipo de juego: 1 para Individual, 2 para Equipos");
@@ -244,14 +284,29 @@ function updateHistory(closer) {
   historyList.appendChild(historyItem);
 }
 
-// Verificar condiciones de victoria
 function checkVictory() {
   const victoryScore = isTeamGame ? 6000 : 3000;
   const winner = players.find(player => player.score >= victoryScore);
   if (winner) {
-    alert(`${winner.name} ha ganado el juego con ${winner.score} puntos!`);
-    location.reload();
+    // Mostrar mensaje en el modal
+    document.getElementById("winnerMessage").textContent = `${winner.name} ha ganado el juego con ${winner.score} puntos!`;
+    
+    // Mostrar el modal
+    const victoryModal = new bootstrap.Modal(document.getElementById('victoryModal'));
+    victoryModal.show();
+
+    // Iniciar confeti
+    startConfetti();
+
+    // Detener confeti al cerrar el modal
+    document.getElementById('victoryModal').addEventListener('hidden.bs.modal', stopConfetti);
   }
+}
+
+
+// Reiniciar el juego
+function startNewGame() {
+  location.reload();
 }
   </script>
 </body>
