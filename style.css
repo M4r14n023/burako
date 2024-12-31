@@ -1,0 +1,66 @@
+/* Estilos personalizados */
+body {
+  background-color: #222; /* Fondo oscuro */
+  color: #fff; /* Texto blanco */
+}
+
+h1 {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #fff; /* Títulos en blanco */
+  text-align: center;
+  background-color: #333; /* Fondo oscuro para los títulos */
+  padding: 10px;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button.btn-red {
+  background-color: #d32f2f; /* Rojo */
+  color: white;
+}
+
+button.btn-green {
+  background-color: #388e3c; /* Verde */
+  color: white;
+}
+
+button.btn-black {
+  background-color: #212121; /* Negro */
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Estilo para la tabla */
+.table thead {
+  background-color: #333;
+  color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: rgba(255, 0, 0, 0.1); /* Rojo tenue */
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: rgba(0, 128, 0, 0.1); /* Verde tenue */
+}
+
+.scoreboard, .history {
+  margin-top: 20px;
+}
+
+.list-group-item {
+  background-color: #333; /* Fondo oscuro para el historial */
+  color: white;
+}
+
+  
