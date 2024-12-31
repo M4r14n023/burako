@@ -13,31 +13,28 @@ h1 {
   padding: 10px;
 }
 
-button {
-  font-size: 1.2rem;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-button.btn-red {
-  background-color: #d32f2f; /* Rojo */
+.custom-black {
+  background-color: black;
   color: white;
+  border: 1px solid black;
 }
 
-button.btn-green {
-  background-color: #388e3c; /* Verde */
+.custom-black:hover {
+  background-color: red;
   color: white;
+  border: 1px solid red;
 }
 
-button.btn-black {
-  background-color: #212121; /* Negro */
+.custom-red {
+  background-color: red;
   color: white;
+  border: 1px solid red;
 }
 
-button:hover {
-  opacity: 0.8;
+.custom-red:hover {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
 }
 
 /* Estilo para la tabla */
