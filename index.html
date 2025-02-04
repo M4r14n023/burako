@@ -233,7 +233,12 @@ function processPoints(playerIndex, isNonCloser = false) {
 
   if (isNonCloser) {
     const liftedDead = confirm(`¿${players[playerIndex].name} levantó el muerto? (Aceptar para Sí, Cancelar para No)`);
-    if (liftedDead) totalPoints += 100;
+    if (liftedDead) {
+        totalPoints += 100;
+    } else {
+        totalPoints -= 100; // Resta 100 puntos si la respuesta es "No"
+    }
+
 
     const hasPenalty = confirm(`¿${players[playerIndex].name} tiene fichas para restar? (Aceptar para Sí, Cancelar para No)`);
     if (hasPenalty) {
