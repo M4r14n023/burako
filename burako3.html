@@ -116,7 +116,7 @@
         let totalTiles = {
             ones: 8,
             twos: 8,
-            jokers: 8,
+            jokers: 2,
             lowTiles: 40,
             highTiles: 48
         };
@@ -244,8 +244,12 @@ function stopConfetti() {
                     totalPoints += ones * 15 + twos * 20 + jokers * 50 + lowTiles * 5 + highTiles * 10;
 
                     if (isNonCloser) {
-                        const liftedDead = confirm(`¿${players[playerIndex].name} levantó el muerto? (Aceptar para Sí, Cancelar para No)`);
-                        if (liftedDead) totalPoints += 100;
+    const liftedDead = confirm(`¿${players[playerIndex].name} levantó el muerto? (Aceptar para Sí, Cancelar para No)`);
+    if (liftedDead) {
+        totalPoints += 100;
+    } else {
+        totalPoints -= 100; // Resta 100 puntos si la respuesta es "No"
+    }
 
                         const hasPenalty = confirm(`¿${players[playerIndex].name} tiene fichas para restar? (Aceptar para Sí, Cancelar para No)`);
                         if (hasPenalty) {
